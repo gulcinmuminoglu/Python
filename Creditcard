@@ -1,0 +1,39 @@
+kart_no=input("Kredi kartı numaranızı girin: ") #Kullanıcıdan Kredi Kartı Numarası istenir
+if len(kart_no)==16:  #16 haneli ise doğrulama yapılır
+    tekler=kart_no[::2]
+    ciftler=kart_no[1::2]
+    ciftler_toplam=0
+    for rakam in ciftler:
+        ciftler_toplam += int(rakam) #index numarası çift olan basamaklar toplanır.
+    tekler_toplam=0
+    for rakam in tekler:
+        if int(rakam)*2 < 10 :
+            tekler_toplam += int(rakam)*2 
+        else: 
+            tekler_toplam += ((int(rakam)*2%10) + ((int(rakam)*2 - int(rakam)*2%10)/10)) #index numarası tek olan basamakların iki katı alınır ve sonuçlar tek hane olarak toplanır
+    if (tekler_toplam+ciftler_toplam)%10==0: 
+        print("Girdiğiniz kredi kartı geçerli bir Visa/Master kartıdır" ) #gerekli şartı sağlıyorsa geçerli olduğu gösterilir.
+    else:
+        print("Girdiğiniz  kredi kartı geçersizdir") #gerekli şartı sağlamıyorsa geçersiz olduğu gösterilir.
+        
+elif len(kart_no)==15: #15 haneli ise doğrulama yapılır
+    ciftler=kart_no[::2] 
+    tekler=kart_no[1::2]
+
+    ciftler_toplam=0
+    for rakam in ciftler:
+        ciftler_toplam += int(rakam) #index numarası çift olan basamaklar toplanır
+        tekler_toplam=0
+    for rakam in tekler:
+        if int(rakam)*2 < 10 :
+            tekler_toplam += int(rakam)*2
+        else: 
+            tekler_toplam += ((int(rakam)*2%10) + ((int(rakam)*2 - int(rakam)*2%10)/10)) #index numarası tek olan basamakların iki katı alınır ve sonuçlar tek hane olarak toplanır.
+            
+    if (tekler_toplam + ciftler_toplam)%10==0:
+        print("Girdiğiniz kredi kartı geçerli bir American Express kartıdır" )#gerekli şartı sağlıyorsa geçerli olduğu gösterilir.
+    else:
+        print("Girdiğiniz kredi kartı geçersizdir")#gerekli şartı sağlamıyorsa geçersiz olduğu gösterilir.
+elif  kart_no.isnumeric()==False or (len(kart_no)!=15 and len(kart_no)!=16) :
+    print("Geçersiz bir kart numarası,lütfen kartınızı kontrol ediniz") #15 veya 16 haneli giriş yapılmadı ise veya sadece numeric karakterler girilmedi ise kart numarasını kontrol etmesi istenir. 
+    
