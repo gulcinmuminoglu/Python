@@ -1,0 +1,25 @@
+import random
+number= int(input("Kaç adet tc istiyorsunuz,lütfen rakam ile giriniz.")) #Kullanıcıdan kaç adet TC Kimlik no istediği bilgisi alınır.
+i=1
+while i<=number:
+    tc = str(random.randint(10**8,10**9)) #9 haneli random sayı üretilir.
+    digits = [int(d) for d in str(tc)]
+    tc_10 = ((7*sum(digits[:9][-1::-2])+ 9*sum(digits[:9][-2::-2])))%10 #ilk 9 hane kullanılarak 10.hanesi üretilir
+    tc_11 = (8*sum(digits[:9][-1::-2]))%10 #ilk 9 hane kullanılarak 11.hane üretilir
+    print(tc+str(tc_10)+str(tc_11)) 
+    i+=1
+    
+    
+    
+    tc= str(int(input("Lütfen TC kimlik numaranızı giriniz")))  #TC kimlik numarası istenir
+ #girilen TC'nin numerik, 0 ile başlamayan ve istenen kurallara uygun olup olmadığı denetlenir. 
+if not tc.isdigit():
+    print("Sadece sayısal deger giriniz")
+if int(tc[0]) == 0:
+    print("Sıfır ile başlayamaz,kontrol ediniz")
+digits = [int(d) for d in str(tc)]
+if len(tc) != 11 or int(tc[0]) == 0 or sum(digits[:10]) % 10 != digits[10] or ((((7 * sum(digits[:9][-1::-2])) - sum(digits[:9][-2::-2])) % 10) != digits[9]):
+    print("Hatalı TC girişi")
+else:
+    print("Doğru")
+        
